@@ -14,12 +14,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // Math
         // 1 : Làm tròn
-        float st1 = 0.9999f;
-        float valueSt1 = Math.round(st1);
-        double valueSt2 = Math.ceil(Double.parseDouble(st1 + ""));
-        double valueSt3 = Math.floor(Double.parseDouble(st1 + ""));
+//        float st1 = 0.9999f;
+//        float valueSt1 = Math.round(st1);
+//        double valueSt2 = Math.ceil(Double.parseDouble(st1 + ""));
+//        double valueSt3 = Math.floor(Double.parseDouble(st1 + ""));
 
-        Log.d("BBB", valueSt3 + "");
+        // 2 : Random
+        // 0 ~ 5
+
+        for (int i = 0; i < 100; i++) {
+            double value = Math.floor(Math.random() * 6);
+            Log.d("BBB",value + "");
+        }
+
+
+
+
 
     }
 }
