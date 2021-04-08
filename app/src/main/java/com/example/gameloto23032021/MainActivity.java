@@ -96,14 +96,18 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         // Khởi tạo mảng
-        ArrayList<String> arrNames = new ArrayList<>();
-        // Thêm dữ liệu
-        arrNames.add("Teo");
-        arrNames.add("Tí");
-        // Xóa dữ phần tử
-        arrNames.remove(1); // Xóa tí
-        // Cập nhật phần tử
-        arrNames.set(0 , "Tèo");
+//        ArrayList<String> arrNames = new ArrayList<>();
+//        // Thêm dữ liệu
+//        arrNames.add("Teo");
+//        arrNames.add("Tí");
+//        // Xóa dữ phần tử
+//        arrNames.remove(1); // Xóa tí
+//        // Cập nhật phần tử
+//        arrNames.set(0 , "Tèo");
+
+        // Task 1 : Add range xử lý validate và add dữ liệu vào  mảng
+        // Task 2 : Reset sẽ xóa dữ liệu edittext , mảng , kết quả
+
 
 
     }
