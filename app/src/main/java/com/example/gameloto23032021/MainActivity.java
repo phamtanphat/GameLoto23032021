@@ -55,12 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 mEdtSMax.setText(String.valueOf(sMax));
 
 
-                mRandom = new Random();
-                int value = mRandom.nextInt(sMax - sMin + 1) + sMin;
-
-                mTextResult += value + " - ";
-
-                mTvResult.setText(mTextResult);
 
             }
         });
