@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String mTextSMin = "";
     String mTextSMax = "";
     Random mRandom = null;
+    String mTextResult = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +50,42 @@ public class MainActivity extends AppCompatActivity {
                 if (sMin >= sMax){
                     sMax = sMin + 1;
                 }
+                mEdtSMax.setText(String.valueOf(sMax));
+
+
                 mRandom = new Random();
                 int value = mRandom.nextInt(sMax - sMin + 1) + sMin;
 
-                mTvResult.setText(String.valueOf(value));
+                mTextResult += value + " - ";
 
-                mEdtSMax.setText(String.valueOf(sMax));
+                mTvResult.setText(mTextResult);
 
+            }
+        });
+
+        mEdtSMax.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId , KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_DONE){
+                    validateForm();
+
+                    int sMax = Integer.parseInt(mTextSMax);
+                    int sMin = Integer.parseInt(mTextSMin);
+
+                    if (sMin >= sMax){
+                        sMax = sMin + 1;
+                    }
+                    mEdtSMax.setText(String.valueOf(sMax));
+
+
+                    mRandom = new Random();
+                    int value = mRandom.nextInt(sMax - sMin + 1) + sMin;
+
+                    mTextResult += value + " - ";
+
+                    mTvResult.setText(mTextResult);
+                }
+                return true;
             }
         });
     }
