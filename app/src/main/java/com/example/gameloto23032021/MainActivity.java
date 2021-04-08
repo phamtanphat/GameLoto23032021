@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mTvResult;
     String mTextSMin = "";
     String mTextSMax = "";
+    Random mRandom = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +39,21 @@ public class MainActivity extends AppCompatActivity {
         mBtnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                validateForm();
 
-                int sMax = Integer.parseInt(textSMax);
-                int SMin = Integer.parseInt(textSMin);
+                int sMax = Integer.parseInt(mTextSMax);
+                int sMin = Integer.parseInt(mTextSMin);
+
+                if (sMin >= sMax){
+                    sMax = sMin + 1;
+                }
+                mRandom = new Random();
+                int value = mRandom.nextInt(sMax - sMin + 1) + sMin;
+
+                mTvResult.setText(String.valueOf(value));
+
+                mEdtSMax.setText(String.valueOf(sMax));
+
             }
         });
     }
@@ -48,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     // 1 : Phạm vi hoạt động
     // 2 : Kiểu dữ liệu trả về
     // 3 : Tên phương thức
+
+    // Xử lý giá trị đầu vào từ edittext
     private void validateForm(){
         mTextSMin = mEdtSMin.getText().toString();
         mTextSMax = mEdtSMax.getText().toString();
