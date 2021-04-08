@@ -17,7 +17,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     EditText mEdtSMin,mEdtSMax;
-    Button mBtnRandom;
+    Button mBtnRandom,mBtnAddRange,mBtnReset;
     TextView mTvResult;
     String mTextSMin = "";
     String mTextSMax = "";
@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         mEdtSMax = findViewById(R.id.editTextSMax);
         mBtnRandom = findViewById(R.id.buttonRandom);
         mTvResult = findViewById(R.id.textViewKetqua);
+        mBtnAddRange = findViewById(R.id.buttonAddRange);
+        mBtnReset = findViewById(R.id.buttonReset);
 
 
         // Task 1 : Bàn phím phải là số
