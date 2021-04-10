@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnReset = findViewById(R.id.buttonReset);
 
         mArrList = new ArrayList<>();
+        mRandom = new Random();
 
         // Task 1 : Bàn phím phải là số
         // Task 2 : Chỉ nhập tối đa là 3 số
@@ -77,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
         mBtnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mArrList.size() > 0){
+                    int index = mRandom.nextInt(mArrList.size());
+                    int value = mArrList.get(index);
+                    mTextResult += value + " - ";
+                    mTvResult.setText(mTextResult);
+                    mArrList.remove(index);
+                }else{
+                    Toast.makeText(MainActivity.this, "Hết số để random", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
