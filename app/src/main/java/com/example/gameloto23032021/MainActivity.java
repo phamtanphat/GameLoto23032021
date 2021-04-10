@@ -15,6 +15,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     String mTextSMax = "";
     Random mRandom = null;
     String mTextResult = "";
+    List<Integer> mArrList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,85 +41,47 @@ public class MainActivity extends AppCompatActivity {
         mBtnAddRange = findViewById(R.id.buttonAddRange);
         mBtnReset = findViewById(R.id.buttonReset);
 
+        mArrList = new ArrayList<>();
 
         // Task 1 : Bàn phím phải là số
         // Task 2 : Chỉ nhập tối đa là 3 số
         // Task 3 : Kiểm tra giá trị nhập vào không đủ thì thông báo
         // Task 4 : Ngoài việc click button có thể click action done để random
 
-//        mBtnAddRange.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//
-//        mBtnRandom.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                validateForm();
-//
-//                int sMax = Integer.parseInt(mTextSMax);
-//                int sMin = Integer.parseInt(mTextSMin);
-//
-//                if (sMin >= sMax){
-//                    sMax = sMin + 1;
-//                }
-//                mEdtSMax.setText(String.valueOf(sMax));
-//
-//
-//
-//            }
-//        });
-//
-//        mEdtSMax.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int actionId , KeyEvent keyEvent) {
-//                if (actionId == EditorInfo.IME_ACTION_DONE){
-//                    validateForm();
-//
-//                    int sMax = Integer.parseInt(mTextSMax);
-//                    int sMin = Integer.parseInt(mTextSMin);
-//
-//                    if (sMin >= sMax){
-//                        sMax = sMin + 1;
-//                    }
-//                    mEdtSMax.setText(String.valueOf(sMax));
-//
-//
-//                    mRandom = new Random();
-//                    int value = mRandom.nextInt(sMax - sMin + 1) + sMin;
-//
-//                    mTextResult += value + " - ";
-//
-//                    mTvResult.setText(mTextResult);
-//                }
-//                return true;
-//            }
-//        });
+        mBtnAddRange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                validateForm();
 
-        // Khởi tạo mảng
-//        ArrayList<String> arrNames = new ArrayList<>();
-//        // Thêm dữ liệu
-//        arrNames.add("Teo");
-//        arrNames.add("Tí");
-//        // Xóa dữ phần tử
-//        arrNames.remove(1); // Xóa tí
-//        // Cập nhật phần tử
-//        arrNames.set(0 , "Tèo");
+                // Chuyển chuỗi thành số
+                int sMax = Integer.parseInt(mTextSMax);
+                int sMin = Integer.parseInt(mTextSMin);
 
-        // Task 1 : Add range xử lý validate và add dữ liệu vào  mảng
-        // Task 2 : Reset sẽ xóa dữ liệu edittext , mảng , kết quả
+                if (sMin >= sMax){
+                    sMax = sMin + 1;
+                }
+                mEdtSMax.setText(String.valueOf(sMax));
 
+                mArrList.clear();
 
+                for (int i = sMin; i <= sMax ; i++) {
+                    mArrList.add(i);
+                }
+                Toast.makeText(MainActivity.this, "Hoàn tất việc thêm giá trị", Toast.LENGTH_SHORT).show();
+                disableView(mBtnAddRange);
+                disableView(mEdtSMax);
+                disableView(mEdtSMin);
+            }
+        });
+
+        mBtnRandom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
-    // Cách định 1 phương thức
-    // 1 : Phạm vi hoạt động
-    // 2 : Kiểu dữ liệu trả về
-    // 3 : Tên phương thức
-
-    // Xử lý giá trị đầu vào từ edittext
     private void validateForm(){
         mTextSMin = mEdtSMin.getText().toString();
         mTextSMax = mEdtSMax.getText().toString();
@@ -125,5 +90,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Bạn chưa nhập đủ thông tin!!", Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    private void enableView(View v){
+        v.setEnabled(true);
+    }
+    private void disableView(View v){
+        v.setEnabled(false);
     }
 }
