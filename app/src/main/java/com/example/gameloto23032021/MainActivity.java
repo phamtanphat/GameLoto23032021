@@ -3,19 +3,13 @@ package com.example.gameloto23032021;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -81,15 +75,46 @@ public class MainActivity extends AppCompatActivity {
                 if (mArrList.size() > 0){
                     int index = mRandom.nextInt(mArrList.size());
                     int value = mArrList.get(index);
+//                    if (mArrList.size() == 1){
+//                        mTextResult += value;
+//                    }else{
+//                        mTextResult += value + " - ";
+//                    }
                     mTextResult += value + " - ";
+
+                    // Regular expression
+                    if (mArrList.size() == 1){
+                        // subString (vị trí bắt đầu cắt , vị trí kết thúc cắt)
+                        mTextResult = mTextResult.substring(0,mTextResult.length() - 3);
+                    }
+
                     mTvResult.setText(mTextResult);
                     mArrList.remove(index);
                 }else{
                     Toast.makeText(MainActivity.this, "Hết số để random", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+
+        mBtnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // xóa dữ liệu
+                mEdtSMax.setText("");
+                mEdtSMin.setText("");
+                mArrList.clear();
+                mTvResult.setText("");
+                mTextResult = "";
+
+                // shift + f6 : rename all
+
+                // bật tương tác cho view
+                enableView(mEdtSMin);
+                enableView(mEdtSMax);
+                enableView(mBtnAddRange);
+            }
+        });
+        // App freaking
 
     }
     private void validateForm(){
